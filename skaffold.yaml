@@ -1,0 +1,21 @@
+apiVersion: skaffold/v4beta8
+kind: Config
+metadata:
+  name: scna
+build:
+  artifacts:
+    - image: uuhnaut69/api-svc
+      buildpacks:
+        builder: paketobuildpacks/builder-jammy-base
+        env:
+          - BP_JVM_VERSION=21
+      sync:
+        auto: true
+deploy:
+  helm:
+    releases:
+      - name: api-svc
+        chartPath: k8s/helm/api-svc
+        valuesFiles:
+          - k8s/helm/api-svc/values.yaml
+        version: 0.1.0

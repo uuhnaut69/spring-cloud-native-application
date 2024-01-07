@@ -1,1 +1,12 @@
-
+server:
+  port: 8080
+  shutdown: graceful
+  compression:
+    enabled: true
+---
+spring:
+  application:
+    name: server-application
+  threads:
+    virtual:
+      enabled: true
